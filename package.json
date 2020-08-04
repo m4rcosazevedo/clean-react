@@ -1,0 +1,7 @@
+{
+  "name": "clean-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Marcos Azevedo <marcos.azevedo@izap.com.br>",
+  "license": "MIT"
+}
