@@ -5,7 +5,8 @@
   "author": "Marcos Azevedo <m4rcos.azevedo@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:staged": "jest"
   },
   "devDependencies": {
     "@types/jest": "^26.0.8",
