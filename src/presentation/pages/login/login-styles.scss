@@ -47,21 +47,25 @@ body {
       width: 100%;
       padding: 30px;
 
-      button {
-        width: 100%;
-        background-color: $primary;
-        color: $white;
-        border: none;
-        height: 5*8px;
-        cursor: pointer;
-        transition: all 300ms ease;
-        border-radius: 4px;
-        box-shadow: 0 0 2px rgba(49, 49, 49, 0.60);
-        &:hover{
-          background-color: $primaryLight;
-        }
-        &:focus {
-          background-color: $primaryDark;
+      .formControl {
+        position: relative;
+
+        button {
+          width: 100%;
+          background-color: $primary;
+          color: $white;
+          border: none;
+          height: 5*8px;
+          cursor: pointer;
+          transition: all 300ms ease;
+          border-radius: 4px;
+          box-shadow: 0 0 2px rgba(49, 49, 49, 0.60);
+          &:hover{
+            background-color: $primaryLight;
+          }
+          &:focus {
+            background-color: $primaryDark;
+          }
         }
       }
 
