@@ -1,0 +1,27 @@
+@import "../../styles/colors.scss";
+
+.formControl {
+  position: relative;
+  margin-bottom: 2*8px;
+  input{
+    width: 100%;
+    border: 1px solid $primary;
+    background: none;
+    padding: 0 5px;
+    height: 5*8px;
+    transition: all 300ms ease;
+    border-radius: 4px;
+    box-shadow: 0 0 2px rgba(49, 49, 49, 0.60);
+    &:hover,
+    &:focus {
+      border-color: $primaryLight;
+      background-color: $white;
+    }
+  }
+
+  .error {
+    color: $primary;
+    font-size: 12px;
+    margin-top: 3px;
+  }
+}
