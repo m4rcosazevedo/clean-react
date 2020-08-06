@@ -21,7 +21,6 @@
     "@typescript-eslint/eslint-plugin": "^3.8.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.2.0",
-    "css-modules-typescript-loader": "^4.0.0",
     "eslint": "^7.6.0",
     "eslint-config-standard-with-typescript": "^18.0.2",
     "eslint-plugin-import": "^2.22.0",
