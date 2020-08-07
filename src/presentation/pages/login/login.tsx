@@ -1,28 +1,42 @@
-import React from 'react'
-import { Footer, LoginHeader as Header, Input, Spinner } from '@/presentation/components'
+import React, { useState } from 'react'
+import { Footer, LoginHeader as Header, Input, FormStatus } from '@/presentation/components'
+import Context from '@/presentation/contexts/form/form-context'
+
 import Styles from './login-styles.scss'
 
+type StateProps = {
+  isLoading: boolean
+  errorMessage: string
+}
+
 const Login: React.FC = () => {
+  const [state] = useState<StateProps>({
+    isLoading: false,
+    errorMessage: ''
+  })
+
   return (
     <div className={Styles.login}>
       <Header />
-      <form className={Styles.form}>
-        <h1>Login</h1>
-        <div className={Styles.formWrap}>
+      <Context.Provider value={state}>
+        <form className={Styles.form}>
+          <h1>Login</h1>
+          <div className={Styles.formWrap}>
 
-          <Input type="email" name="email" placeholder="Digite seu e-mail" />
-          <Input type="password" name="password" placeholder="Digite sua senha" />
+            <Input type="email" name="email" placeholder="Digite seu e-mail" />
+            <Input type="password" name="password" placeholder="Digite sua senha" />
 
-          <div className={Styles.formControl}>
-            <button type="submit">Entrar</button>
+            <div className={Styles.formControl}>
+              <button type="submit">Entrar</button>
+            </div>
+
+            <div className={Styles.linkRegister}>
+              Criar conta
+            </div>
+            <FormStatus />
           </div>
-
-          <div className={Styles.linkRegister}>
-            Criar conta
-          </div>
-          <Spinner className={Styles.spinner} />
-        </div>
-      </form>
+        </form>
+      </Context.Provider>
       <Footer />
     </div>
   )
