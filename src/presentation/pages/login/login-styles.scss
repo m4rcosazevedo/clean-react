@@ -46,6 +46,11 @@
           &:focus {
             background-color: $primaryDark;
           }
+          &:disabled {
+            background-color: $disabledBackground;
+            color: $disabledColor;
+            cursor: not-allowed;
+          }
         }
       }
 
