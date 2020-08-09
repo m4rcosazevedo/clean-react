@@ -82,4 +82,13 @@ describe('Login Component', () => {
     const passwordStatus = sut.getByTestId('password-error')
     expect(passwordStatus.childElementCount).toBe(0)
   })
+
+  test('Should show valid email if Validation succeeds', () => {
+    const { sut, validationSpy } = makeSut()
+    validationSpy.errorMessage = null
+    const emailInput = sut.getByTestId('email')
+    fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
+    const emailStatus = sut.getByTestId('email-error')
+    expect(emailStatus.childElementCount).toBe(0)
+  })
 })
