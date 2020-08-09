@@ -4,15 +4,14 @@ import Context from '@/presentation/contexts/form/form-context'
 
 import Styles from './login-styles.scss'
 
-type StateProps = {
-  isLoading: boolean
-  errorMessage: string
-}
-
 const Login: React.FC = () => {
-  const [state] = useState<StateProps>({
+  const [state] = useState({
     isLoading: false,
-    errorMessage: ''
+    errorMessage: '',
+    inputErrors: {
+      email: '',
+      password: ''
+    }
   })
 
   return (
