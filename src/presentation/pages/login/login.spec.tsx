@@ -31,9 +31,7 @@ describe('Login Component', () => {
     expect(emailStatus.childElementCount).toBe(0)
     const passwordStatus = sut.getByTestId('password-error')
     expect(passwordStatus.childElementCount).toBe(0)
-    /* expect(emailStatus.title).toBe('Campo obrigatório')
-    expect(emailStatus.textContent).toBe('Campo obrigatório')
-    const passwordStatus = getByTestId('password-status')
+    /* const passwordStatus = getByTestId('password-status')
     expect(passwordStatus.title).toBe('Campo obrigatório')
     expect(emailStatus.textContent).toBe('Campo obrigatório') */
   })
@@ -54,5 +52,15 @@ describe('Login Component', () => {
     fireEvent.input(passwordInput, { target: { value: password } })
     expect(validationSpy.fieldName).toEqual('password')
     expect(validationSpy.fieldValue).toEqual(password)
+  })
+
+  test('Should show email error if Validation fails', () => {
+    const { sut, validationSpy } = makeSut()
+    const errorMessage = faker.random.words()
+    validationSpy.errorMessage = errorMessage
+    const emailInput = sut.getByTestId('email')
+    fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
+    const emailStatus = sut.getByTestId('email-error')
+    expect(emailStatus.childNodes[0].textContent).toBe(errorMessage)
   })
 })
