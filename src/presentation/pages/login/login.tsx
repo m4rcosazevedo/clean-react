@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Footer, LoginHeader as Header, Input, FormStatus } from '@/presentation/components'
 import Context from '@/presentation/contexts/form/form-context'
 
@@ -93,9 +94,9 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
               <button data-testid="submit" disabled={!isValidForm()} type="submit">Entrar</button>
             </div>
 
-            <div className={Styles.linkRegister}>
+            <Link data-testid="signup" to="/signup" className={Styles.linkRegister}>
               Criar conta
-            </div>
+            </Link>
             <FormStatus />
           </div>
         </form>
