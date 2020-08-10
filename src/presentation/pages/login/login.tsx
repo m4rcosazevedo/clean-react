@@ -29,7 +29,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
     const noError = !Object.values(state.inputErrors).map((error) => !!error).includes(true)
     const filledFields = !Object.values(state.values).map((error) => !!error).includes(false)
 
-    return !(noError && filledFields)
+    return (noError && filledFields)
   }
 
   useEffect(() => {
@@ -54,8 +54,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
-
-    if (state.isLoading) {
+    if (state.isLoading || !isValidForm()) {
       return
     }
 
@@ -74,7 +73,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
     <div className={Styles.login}>
       <Header />
       <Context.Provider value={{ state, setState }}>
-        <form className={Styles.form} onSubmit={handleSubmit}>
+        <form data-testid="form" className={Styles.form} onSubmit={handleSubmit}>
           <h1>Login</h1>
           <div className={Styles.formWrap}>
 
@@ -82,7 +81,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
             <Input type="password" name="password" placeholder="Digite sua senha" />
 
             <div className={Styles.formControl}>
-              <button data-testid="submit" disabled={isValidForm()} type="submit">Entrar</button>
+              <button data-testid="submit" disabled={!isValidForm()} type="submit">Entrar</button>
             </div>
 
             <div className={Styles.linkRegister}>
