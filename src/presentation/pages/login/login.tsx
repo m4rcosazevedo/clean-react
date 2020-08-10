@@ -23,6 +23,13 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
     }
   })
 
+  const isValidForm = (): boolean => {
+    const noError = !Object.values(state.inputErrors).map((error) => !!error).includes(true)
+    const filledFields = !Object.values(state.values).map((error) => !!error).includes(false)
+
+    return !(noError && filledFields)
+  }
+
   useEffect(() => {
     setState({
       ...state,
@@ -55,7 +62,7 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
             <Input type="password" name="password" placeholder="Digite sua senha" />
 
             <div className={Styles.formControl}>
-              <button data-testid="submit" disabled type="submit">Entrar</button>
+              <button data-testid="submit" disabled={isValidForm()} type="submit">Entrar</button>
             </div>
 
             <div className={Styles.linkRegister}>
