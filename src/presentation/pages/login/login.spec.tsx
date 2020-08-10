@@ -75,8 +75,7 @@ describe('Login Component', () => {
   })
 
   test('Should show valid password if Validation succeeds', () => {
-    const { sut, validationSpy } = makeSut()
-    validationSpy.errorMessage = null
+    const { sut } = makeSut()
     const passwordInput = sut.getByTestId('password')
     fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
     const passwordStatus = sut.getByTestId('password-error')
@@ -84,11 +83,18 @@ describe('Login Component', () => {
   })
 
   test('Should show valid email if Validation succeeds', () => {
-    const { sut, validationSpy } = makeSut()
-    validationSpy.errorMessage = null
+    const { sut } = makeSut()
     const emailInput = sut.getByTestId('email')
     fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
     const emailStatus = sut.getByTestId('email-error')
     expect(emailStatus.childElementCount).toBe(0)
+  })
+
+  test('Should enable submit button if form is valid', () => {
+    const { sut } = makeSut()
+    fireEvent.input(sut.getByTestId('email'), { target: { value: faker.internet.email() } })
+    fireEvent.input(sut.getByTestId('password'), { target: { value: faker.internet.password() } })
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+    expect(submitButton.disabled).toBe(false)
   })
 })
