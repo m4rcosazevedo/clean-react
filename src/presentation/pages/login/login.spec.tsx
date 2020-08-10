@@ -1,9 +1,10 @@
 import React from 'react'
 import Login from './login'
-import { render, RenderResult, fireEvent, cleanup } from '@testing-library/react'
+import { render, RenderResult, fireEvent, cleanup, waitFor } from '@testing-library/react'
 import { AuthenticationSpy, ValidationSpy } from '@/presentation/test'
 
 import faker from 'faker'
+import { InvalidCredencialsError } from '@/domain/erros'
 
 type SutTypes = {
   sut: RenderResult
@@ -52,7 +53,8 @@ describe('Login Component', () => {
 
   test('Should start with initial state', () => {
     const { sut } = makeSut()
-    simulateStatusForField(sut, 'error-wrap')
+    const errorWrap = sut.getByTestId('error-wrap')
+    expect(errorWrap.childElementCount).toBe(0)
     const submitButton = sut.getByTestId('submit') as HTMLButtonElement
     expect(submitButton.disabled).toBe(true)
     simulateStatusForField(sut, 'email-error')
@@ -144,5 +146,17 @@ describe('Login Component', () => {
     simulateStatusForField(sut, 'email-error', errorMessage)
     fireEvent.submit(sut.getByTestId('form'))
     expect(authenticationSpy.callsCount).toBe(0)
+  })
+
+  test('Should present error if Authentication fails', async () => {
+    const { sut, authenticationSpy } = makeSut()
+    const error = new InvalidCredencialsError()
+    const errorWrap = sut.getByTestId('error-wrap')
+    jest.spyOn(authenticationSpy, 'auth').mockReturnValueOnce(Promise.reject(error))
+    simulateValidSubmit(sut)
+    await waitFor(() => errorWrap)
+    const mainError = sut.getByTestId('main-error')
+    expect(mainError.textContent).toBe(error.message)
+    expect(errorWrap.childElementCount).toBe(1)
   })
 })
