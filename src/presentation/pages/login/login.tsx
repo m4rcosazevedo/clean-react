@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Footer, LoginHeader as Header, Input, FormStatus } from '@/presentation/components'
 import Context from '@/presentation/contexts/form/form-context'
@@ -34,26 +34,6 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
     return (noError && filledFields)
   }
 
-  useEffect(() => {
-    setState({
-      ...state,
-      inputErrors: {
-        ...state.inputErrors,
-        email: validation.validate('email', state.values.email)
-      }
-    })
-  }, [state.values.email])
-
-  useEffect(() => {
-    setState({
-      ...state,
-      inputErrors: {
-        ...state.inputErrors,
-        password: validation.validate('password', state.values.password)
-      }
-    })
-  }, [state.values.password])
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     try {
@@ -84,7 +64,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   return (
     <div className={Styles.login}>
       <Header />
-      <Context.Provider value={{ state, setState }}>
+      <Context.Provider value={{ state, setState, validation }}>
         <form data-testid="form" className={Styles.form} onSubmit={handleSubmit}>
           <h1>Login</h1>
           <div className={Styles.formWrap}>
