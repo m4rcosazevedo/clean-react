@@ -1,10 +1,10 @@
 import React from 'react'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
-import Login from './login'
 import { render, RenderResult, fireEvent, cleanup, waitFor } from '@testing-library/react'
 import { AuthenticationSpy, ValidationSpy } from '@/presentation/test'
 import { InvalidCredencialsError } from '@/domain/erros'
+import { Login } from '@/presentation/pages'
 
 import faker from 'faker'
 import 'jest-localstorage-mock'

@@ -5,7 +5,7 @@ import Context from '@/presentation/contexts/form/form-context'
 
 import Styles from './login-styles.scss'
 import { Validation } from '@/presentation/protocols/validation'
-import { Authentication } from '@/domain/usecases'
+import { Authentication } from '@/domain/usecases/authentication'
 
 type Props = {
   validation: Validation
