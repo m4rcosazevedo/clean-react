@@ -4,7 +4,9 @@ module.exports = {
     '<rootDir>/src/**/*.{ts,tsx}',
     '!<rootDir>/src/main/**/*',
     '!<rootDir>/src/presentation/components/router/**/*',
-    '!**/*.d.ts'
+    '!**/*.d.ts',
+    '!<rootDir>/src/**/index.ts',
+    '!<rootDir>/src/presentation/components/index.tsx'
   ],
   coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',

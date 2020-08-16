@@ -4,7 +4,7 @@ import Styles from './login-header-styles.scss'
 
 type Props = React.HTMLAttributes<HTMLDivElement>
 
-const LoginHeader: React.FC<Props> = (props: Props) => {
+const LoginHeader: React.FC<Props> = () => {
   return (
     <header className={Styles.header}>
       <Logo />
